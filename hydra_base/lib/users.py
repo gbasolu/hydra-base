@@ -340,7 +340,7 @@ def get_role(role_id,**kwargs):
         role = db.DBSession.query(Role).filter(Role.role_id==role_id).one()
         return role
     except NoResultFound: 
-        raise HydraError("Role not found (role_id=%s)", role_id)
+        raise HydraError("Role not found (role_id={})".format(role_id))
     
 def get_user_roles(uid,**kwargs):
     """
@@ -352,7 +352,7 @@ def get_user_roles(uid,**kwargs):
                                                   RoleUser.user_id==uid).all()
         return user_roles
     except NoResultFound: 
-        raise HydraError("Roles not found for user (user_id=%s)", uid)
+        raise HydraError("Roles not found for user (user_id={})".format(uid))
 
 def get_user_permissions(uid, **kwargs):
     """
@@ -368,7 +368,7 @@ def get_user_permissions(uid, **kwargs):
                                                   RoleUser.user_id==uid).all()
         return user_perms
     except: 
-        raise HydraError("Permissions not found for user (user_id=%s)", uid)
+        raise HydraError("Permissions not found for user (user_id={})".format(uid))
 
 def get_role_by_code(role_code,**kwargs):
     """
@@ -378,7 +378,7 @@ def get_role_by_code(role_code,**kwargs):
         role = db.DBSession.query(Role).filter(Role.role_code==role_code).one()
         return role
     except NoResultFound:
-        raise ResourceNotFoundError("Role not found (role_code=%s)"%(role_code))
+        raise ResourceNotFoundError("Role not found (role_code={})".format(role_code))
     
 
 def get_perm(perm_id,**kwargs):
@@ -390,7 +390,7 @@ def get_perm(perm_id,**kwargs):
         perm = db.DBSession.query(Perm).filter(Perm.perm_id==perm_id).one()
         return perm
     except NoResultFound:
-        raise ResourceNotFoundError("Permission not found (perm_id=%s)"%(perm_id))
+        raise ResourceNotFoundError("Permission not found (perm_id={})".format(perm_id))
 
 def get_perm_by_code(perm_code,**kwargs):
     """
@@ -401,4 +401,4 @@ def get_perm_by_code(perm_code,**kwargs):
         perm = db.DBSession.query(Perm).filter(Perm.perm_code==perm_code).one()
         return perm
     except NoResultFound:
-        raise ResourceNotFoundError("Permission not found (perm_code=%s)"(perm_code))
+        raise ResourceNotFoundError("Permission not found (perm_code={})".format(perm_code))
